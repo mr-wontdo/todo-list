@@ -20,6 +20,7 @@ body {
     height: 100vh;
 }
 
+/* Header */
 header {
     background-color: var(--obsidian-blue);
     color: white;
@@ -29,14 +30,29 @@ header {
     gap: 12px;
 }
 
-.sidemenu {
-    grid-area: 2 / 1 / 3 / 3;
+/* Navigation Bar */
+.navbar {
+    grid-area: 2 / 1 / 3 / 2;
+    display: flex;
+    flex-direction: column;
 }
 
+.default-projects {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Content */
 .content {
     grid-area: 2 / 2 / 3 / 3;
 }
 
+/* Footer */
 footer {
     background-color: var(--obsidian-blue);
     color: white;
