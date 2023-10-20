@@ -12,3 +12,11 @@ class Project {
         this.todoList.push(new Todo(title, description, dueDate, priority));
     }
 }
+
+function addProject(title) {
+    projectList.push(new Project(title));
+}
+
+function deleteProject(projectIndex) {
+    projectList.splice(projectIndex, 1);
+}
