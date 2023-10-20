@@ -22,3 +22,7 @@ class Todo {
         this.priority = priority;
     }
 }
+
+function deleteTodo(projectIndex, todoIndex) {
+    delete projectList[projectIndex].todoList.splice(todoIndex, 1);
+}
