@@ -1,4 +1,4 @@
-export { Todo, deleteTodo };
+export { Todo };
 
 class Todo {
     constructor(title, description, dueDate, priority) {
@@ -23,8 +23,4 @@ class Todo {
     setPriority(priority) {
         this.priority = priority;
     }
-}
-
-function deleteTodo(projectIndex, todoIndex, projectList) {
-    delete projectList[projectIndex].todoList.splice(todoIndex, 1);
 }

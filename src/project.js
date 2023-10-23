@@ -1,5 +1,7 @@
-export { addProject, deleteProject };
+export { projectList, addProject, deleteProject };
 import { Todo } from './todo.js';
+
+let projectList = [];
 
 class Project {
     constructor(title) {
@@ -14,12 +16,17 @@ class Project {
     addTodo(title, description, dueDate, priority) {
         this.todoList.push(new Todo(title, description, dueDate, priority));
     }
+
+    deleteTodo(todoIndex) {
+        delete this.todoList.splice(todoIndex, 1);
+    }
+
 }
 
-function addProject(title, projectList) {
+function addProject(title) {
     projectList.push(new Project(title));
 }
 
-function deleteProject(projectIndex, projectList) {
+function deleteProject(projectIndex) {
     projectList.splice(projectIndex, 1);
 }
