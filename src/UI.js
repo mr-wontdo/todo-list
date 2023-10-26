@@ -11,6 +11,7 @@ function updateDOM() {
 }
 
 function addProjectDOM() {
+    // Add project list to navbar
     projectList.forEach(project => {
         const projectDOM = document.createElement('button');
         projectDOM.textContent = project.title;
@@ -19,9 +20,33 @@ function addProjectDOM() {
 }
 
 function addTodoDOM(projectIndex) {
+    // Add project title to content
+    const projectTitle = document.createElement('h2');
+    projectTitle.textContent = projectList[projectIndex].title;
+    contentDOM.appendChild(projectTitle);
+
+    // Add todo list to content
     projectList[projectIndex].todoList.forEach(todo => {
-        const todoTitle = document.createElement('h2');
+        const todoContainer = document.createElement('div');
+
+        const todoTitle = document.createElement('p');
         todoTitle.textContent = todo.title;
-        contentDOM.appendChild(todoTitle);
+
+        const todoDescription = document.createElement('p');
+        todoDescription.textContent = todo.description;
+
+        const todoDueDate = document.createElement('p');
+        todoDueDate.textContent = todo.dueDate;
+
+        const todoPriority = document.createElement('p');
+        todoPriority.textContent = todo.priority;
+
+        contentDOM.appendChild(todoContainer);
+        todoContainer.appendChild(todoTitle);
+        todoContainer.appendChild(todoDescription);
+        todoContainer.appendChild(todoDueDate);
+        todoContainer.appendChild(todoPriority);
     });
+
+    // Add 
 }
