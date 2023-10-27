@@ -7,19 +7,24 @@ const contentDOM = document.querySelector('.content');
 function updateDOM() {
     console.log(projectList);
     addProjectDOM();
-    addTodoDOM(0);
 }
 
 function addProjectDOM() {
     // Add project list to navbar
-    projectList.forEach(project => {
+    for (let i = 0; i < projectList.length; i++) {
         const projectDOM = document.createElement('button');
-        projectDOM.textContent = project.title;
+        projectDOM.textContent = projectList[i].title;
+        projectDOM.setAttribute('data-index', i);
+        projectDOM.addEventListener('click', () => addTodoDOM(i));
+        
         projectListDOM.appendChild(projectDOM);
-    });
+    }
 }
 
 function addTodoDOM(projectIndex) {
+    // Clear content
+    contentDOM.textContent = '';
+
     // Add project title to content
     const projectTitle = document.createElement('h2');
     projectTitle.textContent = projectList[projectIndex].title;
@@ -47,6 +52,4 @@ function addTodoDOM(projectIndex) {
         todoContainer.appendChild(todoDueDate);
         todoContainer.appendChild(todoPriority);
     });
-
-    // Add 
 }
