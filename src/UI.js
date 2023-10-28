@@ -16,7 +16,7 @@ function addProjectDOM() {
         projectDOM.textContent = projectList[i].title;
         projectDOM.setAttribute('data-index', i);
         projectDOM.addEventListener('click', () => addTodoDOM(i));
-        
+
         projectListDOM.appendChild(projectDOM);
     }
 }
@@ -52,4 +52,16 @@ function addTodoDOM(projectIndex) {
         todoContainer.appendChild(todoDueDate);
         todoContainer.appendChild(todoPriority);
     });
+
+    addTodoButtonDOM();
+}
+
+function addTodoButtonDOM() {
+    const addTodoButton = document.createElement('button');
+    addTodoButton.textContent = '+ Add Task';
+    addTodoButton.addEventListener('click', () => {
+
+    });
+
+    contentDOM.appendChild(addTodoButton);
 }
