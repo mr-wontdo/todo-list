@@ -3,6 +3,8 @@ import { projectList } from './project.js';
 
 const projectListDOM = document.querySelector('.project-list');
 const contentDOM = document.querySelector('.content');
+const todoModal = document.querySelector('.todo-dialog');
+const projectModal = document.querySelector('.project-dialog');
 
 let activeProjectIndex = null;
 
@@ -20,7 +22,6 @@ function addProjectDOM() {
         projectDOM.addEventListener('click', (e) => {
             addTodoDOM(i);
             setActiveProject(e);
-            console.log({activeProjectIndex});
         });
 
         projectListDOM.appendChild(projectDOM);
@@ -66,7 +67,7 @@ function addTodoButtonDOM() {
     const addTodoButton = document.createElement('button');
     addTodoButton.textContent = '+ Add Task';
     addTodoButton.addEventListener('click', () => {
-
+        todoModal.showModal();
     });
 
     contentDOM.appendChild(addTodoButton);
