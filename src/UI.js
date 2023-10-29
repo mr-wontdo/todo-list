@@ -1,5 +1,5 @@
 export { updateDOM };
-import { projectList } from './project.js';
+import { projectList, addProject } from './project.js';
 
 const navBarDOM = document.querySelector('.project-list');
 const contentDOM = document.querySelector('.content');
@@ -15,6 +15,7 @@ function updateDOM() {
 
 // Add projects to navbar
 function addProjectDOM() {
+    navBarDOM.textContent = '';
     for (let i = 0; i < projectList.length; i++) {
         const projectDOM = document.createElement('button');
         projectDOM.textContent = projectList[i].title;
@@ -85,6 +86,16 @@ function addTodoButtonDOM() {
 
     contentDOM.appendChild(addTodoButton);
 }
+
+// Add new project
+const projectForm = document.querySelector('.project-dialog form');
+projectForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    addProject(document.querySelector('.project-dialog input').value);
+    updateDOM();
+    projectModal.close();
+    projectForm.reset();
+});
 
 function setActiveProject(e) {
     activeProjectIndex = e.srcElement.getAttribute('data-index');
