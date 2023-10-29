@@ -13,8 +13,8 @@ function updateDOM() {
     addProjectDOM();
 }
 
+// Add projects to navbar
 function addProjectDOM() {
-    // Add project list to navbar
     for (let i = 0; i < projectList.length; i++) {
         const projectDOM = document.createElement('button');
         projectDOM.textContent = projectList[i].title;
@@ -29,8 +29,8 @@ function addProjectDOM() {
     addProjectButtonDOM();
 }
 
+// Add todos to content DOM
 function addTodoDOM(projectIndex) {
-    // Clear content
     contentDOM.textContent = '';
 
     // Add project title to content
@@ -64,16 +64,7 @@ function addTodoDOM(projectIndex) {
     addTodoButtonDOM();
 }
 
-function addTodoButtonDOM() {
-    const addTodoButton = document.createElement('button');
-    addTodoButton.textContent = '+ Add Task';
-    addTodoButton.addEventListener('click', () => {
-        todoModal.showModal();
-    });
-
-    contentDOM.appendChild(addTodoButton);
-}
-
+// Create '+ Add Project' button
 function addProjectButtonDOM() {
     const addProjectButton = document.createElement('button');
     addProjectButton.textContent = '+ Add Project';
@@ -82,6 +73,17 @@ function addProjectButtonDOM() {
     });
 
     navBarDOM.appendChild(addProjectButton);
+}
+
+// Create '+ Add Todo' button
+function addTodoButtonDOM() {
+    const addTodoButton = document.createElement('button');
+    addTodoButton.textContent = '+ Add Task';
+    addTodoButton.addEventListener('click', () => {
+        todoModal.showModal();
+    });
+
+    contentDOM.appendChild(addTodoButton);
 }
 
 function setActiveProject(e) {
