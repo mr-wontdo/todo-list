@@ -4,6 +4,8 @@ import { projectList } from './project.js';
 const projectListDOM = document.querySelector('.project-list');
 const contentDOM = document.querySelector('.content');
 
+let activeProjectIndex = null;
+
 function updateDOM() {
     console.log(projectList);
     addProjectDOM();
@@ -15,7 +17,11 @@ function addProjectDOM() {
         const projectDOM = document.createElement('button');
         projectDOM.textContent = projectList[i].title;
         projectDOM.setAttribute('data-index', i);
-        projectDOM.addEventListener('click', () => addTodoDOM(i));
+        projectDOM.addEventListener('click', (e) => {
+            addTodoDOM(i);
+            setActiveProject(e);
+            console.log({activeProjectIndex});
+        });
 
         projectListDOM.appendChild(projectDOM);
     }
@@ -64,4 +70,8 @@ function addTodoButtonDOM() {
     });
 
     contentDOM.appendChild(addTodoButton);
+}
+
+function setActiveProject(e) {
+    activeProjectIndex = e.srcElement.getAttribute('data-index');
 }
