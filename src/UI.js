@@ -1,10 +1,10 @@
 export { updateDOM };
 import { projectList } from './project.js';
 
-const projectListDOM = document.querySelector('.project-list');
+const navBarDOM = document.querySelector('.project-list');
 const contentDOM = document.querySelector('.content');
-const todoModal = document.querySelector('.todo-dialog');
 const projectModal = document.querySelector('.project-dialog');
+const todoModal = document.querySelector('.todo-dialog');
 
 let activeProjectIndex = null;
 
@@ -24,8 +24,9 @@ function addProjectDOM() {
             setActiveProject(e);
         });
 
-        projectListDOM.appendChild(projectDOM);
+        navBarDOM.appendChild(projectDOM);
     }
+    addProjectButtonDOM();
 }
 
 function addTodoDOM(projectIndex) {
@@ -71,6 +72,16 @@ function addTodoButtonDOM() {
     });
 
     contentDOM.appendChild(addTodoButton);
+}
+
+function addProjectButtonDOM() {
+    const addProjectButton = document.createElement('button');
+    addProjectButton.textContent = '+ Add Project';
+    addProjectButton.addEventListener('click', () => {
+        projectModal.showModal();
+    });
+
+    navBarDOM.appendChild(addProjectButton);
 }
 
 function setActiveProject(e) {
