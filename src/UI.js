@@ -11,6 +11,7 @@ let activeProjectIndex = null;
 function updateDOM() {
     console.log(projectList);
     addProjectDOM();
+    if (activeProjectIndex) addTodoDOM(activeProjectIndex);
 }
 
 // Add projects to navbar
@@ -22,7 +23,7 @@ function addProjectDOM() {
         projectDOM.setAttribute('data-index', i);
         projectDOM.addEventListener('click', (e) => {
             addTodoDOM(i);
-            setActiveProject(e);
+            setActiveProjectIndex(e);
         });
 
         navBarDOM.appendChild(projectDOM);
@@ -91,12 +92,28 @@ function addTodoButtonDOM() {
 const projectForm = document.querySelector('.project-dialog form');
 projectForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    addProject(document.querySelector('.project-dialog input').value);
+    addProject(document.querySelector('.project-dialog input#title').value);
     updateDOM();
     projectModal.close();
     projectForm.reset();
 });
 
-function setActiveProject(e) {
+// Add new task
+const todoForm = document.querySelector('.todo-dialog form');
+todoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    projectList[activeProjectIndex].addTodo(
+        document.querySelector('.todo-dialog input#title').value,
+        document.querySelector('.todo-dialog textarea#description').value,
+        document.querySelector('.todo-dialog input#due_date').value,
+        document.querySelector('.todo-dialog select#priority').value
+    );
+    updateDOM();
+    todoModal.close();
+    todoForm.reset();
+});
+
+// Set active project
+function setActiveProjectIndex(e) {
     activeProjectIndex = e.srcElement.getAttribute('data-index');
 }
