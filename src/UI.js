@@ -71,10 +71,23 @@ function addProjectButtonDOM() {
     const addProjectButton = document.createElement('button');
     addProjectButton.textContent = '+ Add Project';
     addProjectButton.addEventListener('click', () => {
+        addProjectFormEventListener();
         projectModal.showModal();
     });
 
     navBarDOM.appendChild(addProjectButton);
+}
+
+// Add event listener to '+Add Project' form
+function addProjectFormEventListener() {
+    const projectForm = document.querySelector('.project-dialog form');
+    projectForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        addProject(document.querySelector('.project-dialog input#title').value);
+        updateDOM();
+        projectModal.close();
+        projectForm.reset();
+    });
 }
 
 // Create '+ Add Todo' button
@@ -82,36 +95,30 @@ function addTodoButtonDOM() {
     const addTodoButton = document.createElement('button');
     addTodoButton.textContent = '+ Add Task';
     addTodoButton.addEventListener('click', () => {
+        document.querySelector('.modal-header').textContent = 'Add Task';
+        addTodoFormEventListener();
         todoModal.showModal();
     });
 
     contentDOM.appendChild(addTodoButton);
 }
 
-// Add new project
-const projectForm = document.querySelector('.project-dialog form');
-projectForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    addProject(document.querySelector('.project-dialog input#title').value);
-    updateDOM();
-    projectModal.close();
-    projectForm.reset();
-});
-
-// Add new task
-const todoForm = document.querySelector('.todo-dialog form');
-todoForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    projectList[activeProjectIndex].addTodo(
-        document.querySelector('.todo-dialog input#title').value,
-        document.querySelector('.todo-dialog textarea#description').value,
-        document.querySelector('.todo-dialog input#due_date').value,
-        document.querySelector('.todo-dialog select#priority').value
-    );
-    updateDOM();
-    todoModal.close();
-    todoForm.reset();
-});
+// Add event listener to 'Add Todo' form
+function addTodoFormEventListener() {
+    const todoForm = document.querySelector('.todo-dialog form');
+    todoForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        projectList[activeProjectIndex].addTodo(
+            document.querySelector('.todo-dialog input#title').value,
+            document.querySelector('.todo-dialog textarea#description').value,
+            document.querySelector('.todo-dialog input#due_date').value,
+            document.querySelector('.todo-dialog select#priority').value
+        );
+        updateDOM();
+        todoModal.close();
+        todoForm.reset();
+    });
+}
 
 // Set active project
 function setActiveProjectIndex(e) {
