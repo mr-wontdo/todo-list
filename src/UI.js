@@ -1,5 +1,5 @@
 export { updateDOM };
-import { projectList, addProject } from './project.js';
+import { projectList, addProject, deleteProject } from './project.js';
 
 const navBarDOM = document.querySelector('.project-list');
 const contentDOM = document.querySelector('.content');
@@ -18,6 +18,8 @@ function updateDOM() {
 function addProjectDOM() {
     navBarDOM.textContent = '';
     for (let i = 0; i < projectList.length; i++) {
+        // Create project buttons
+        const projectDOMContainer = document.createElement('div');
         const projectDOM = document.createElement('button');
         projectDOM.textContent = projectList[i].title;
         projectDOM.setAttribute('data-index', i);
@@ -26,7 +28,20 @@ function addProjectDOM() {
             setActiveProjectIndex(e);
         });
 
-        navBarDOM.appendChild(projectDOM);
+        // Create delete project buttons
+        const deleteProjectButton = document.createElement('button');
+        deleteProjectButton.textContent = '-';
+        deleteProjectButton.setAttribute('data-index', i);
+        deleteProjectButton.addEventListener('click', (e) => {
+            console.log('test');
+            console.log(e.srcElement.getAttribute('data-index'));
+            deleteProject(e.srcElement.getAttribute('data-index'));
+            updateDOM();
+        });
+
+        navBarDOM.appendChild(projectDOMContainer);
+        projectDOMContainer.appendChild(projectDOM);
+        projectDOMContainer.appendChild(deleteProjectButton);
     }
     addProjectButtonDOM();
 }
@@ -78,7 +93,7 @@ function addProjectButtonDOM() {
     navBarDOM.appendChild(addProjectButton);
 }
 
-// Add event listener to '+Add Project' form
+// Add event listener to '+ Add Project' form
 function addProjectFormEventListener() {
     const projectForm = document.querySelector('.project-dialog form');
     projectForm.addEventListener('submit', (e) => {
