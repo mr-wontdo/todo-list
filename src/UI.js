@@ -33,8 +33,6 @@ function addProjectDOM() {
         deleteProjectButton.textContent = '-';
         deleteProjectButton.setAttribute('data-index', i);
         deleteProjectButton.addEventListener('click', (e) => {
-            console.log('test');
-            console.log(e.srcElement.getAttribute('data-index'));
             deleteProject(e.srcElement.getAttribute('data-index'));
             updateDOM();
         });
