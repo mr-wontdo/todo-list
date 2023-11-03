@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* border: 1px solid black; */
+    border: 1px solid black;
 }
 
 :root {
@@ -50,6 +50,10 @@ header {
 /* Content */
 .content {
     grid-area: 2 / 2 / 3 / 3;
+}
+
+.todo-container {
+    display: flex;
 }
 
 /* Footer */
