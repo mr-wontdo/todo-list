@@ -76,7 +76,7 @@ function addTodoDOM(projectIndex) {
         todoDueDate.textContent = projectList[projectIndex].todoList[i].dueDate;
 
         const todoPriority = document.createElement('p');
-        todoPriority.textContent = projectList[projectIndex].todoList[i].title;
+        todoPriority.textContent = projectList[projectIndex].todoList[i].priority;
 
         // Create delete todo button
         const deleteTodoButton = document.createElement('button');
@@ -84,6 +84,15 @@ function addTodoDOM(projectIndex) {
         deleteTodoButton.setAttribute('data-index', i);
         deleteTodoButton.addEventListener('click', () => {
             projectList[projectIndex].deleteTodo(projectList[projectIndex].todoList[i]);
+            updateDOM();
+        });
+
+        // Create edit todo button
+        const editTodoButton = document.createElement('button');
+        editTodoButton.textContent = 'Edit';
+        editTodoButton.setAttribute('data-index', i);
+        editTodoButton.addEventListener('click', () => {
+            todoModal.showModal();
             updateDOM();
         });
 
@@ -96,45 +105,10 @@ function addTodoDOM(projectIndex) {
         leftPanel.appendChild(todoDueDate);
         leftPanel.appendChild(todoPriority);
         rightPanel.appendChild(deleteTodoButton);  
+        rightPanel.appendChild(editTodoButton);  
     }
 
     addTodoButtonDOM();
-    // projectList[projectIndex].todoList.forEach(todo => {
-    //     const todoContainer = document.createElement('div');
-    //     todoContainer.classList.add('todo-container');
-
-    //     const leftPanel = document.createElement('div');
-    //     leftPanel.classList.add('left-panel');
-
-    //     const rightPanel = document.createElement('div');
-    //     rightPanel.classList.add('right-panel');
-
-    //     // Create todo details
-    //     const todoTitle = document.createElement('p');
-    //     todoTitle.textContent = todo.title;
-
-    //     const todoDescription = document.createElement('p');
-    //     todoDescription.textContent = todo.description;
-
-    //     const todoDueDate = document.createElement('p');
-    //     todoDueDate.textContent = todo.dueDate;
-
-    //     const todoPriority = document.createElement('p');
-    //     todoPriority.textContent = todo.priority;
-
-    //     // Create delete todo button
-    //     const deleteTodoButton = document.createElement('button');
-    //     deleteTodoButton.textContent = '-';
-
-    //     contentDOM.appendChild(todoContainer);
-    //     todoContainer.appendChild(leftPanel);
-    //     todoContainer.appendChild(rightPanel);
-    //     leftPanel.appendChild(todoTitle);
-    //     leftPanel.appendChild(todoDescription);
-    //     leftPanel.appendChild(todoDueDate);
-    //     leftPanel.appendChild(todoPriority);
-    //     rightPanel.appendChild(deleteTodoButton);
-    // });
 }
 
 // Create '+ Add Project' button
