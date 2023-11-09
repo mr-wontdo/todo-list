@@ -37,7 +37,7 @@ header {
     flex-direction: column;
 }
 
-.default-projects {
+.default-project-list {
     display: flex;
     flex-direction: column;
 }
@@ -50,10 +50,6 @@ header {
 /* Content */
 .content {
     grid-area: 2 / 2 / 3 / 3;
-}
-
-.todo-container {
-    display: flex;
 }
 
 /* Footer */
@@ -77,14 +73,14 @@ dialog {
     width: 400px;
 }
 
-.modal-form {
+form {
     display: flex;
     flex-direction: column;
     gap: 24px;
     padding: 24px;
 }
 
-.modal-form > div {
+form > div {
     display: flex;
     flex-direction: column;  
     gap: 12px;
