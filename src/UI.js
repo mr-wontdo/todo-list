@@ -38,8 +38,15 @@ function appendProjectDOM() {
         project.appendChild(projectTitle);
         project.appendChild(deleteButton);
     }
-}
 
+    // Create add project button
+    const addButton = document.createElement('button');
+    addButton.textContent = '+ Add Project';
+    addButton.addEventListener('click', () => {
+        addProjectDialog.showModal();
+    });
+    navBar.appendChild(addButton);
+}
 
 // Add tasks to content
 function appendTaskDOM() {
@@ -94,10 +101,19 @@ function appendTaskDOM() {
         taskActions.appendChild(editButton);
         taskActions.appendChild(deleteButton);
     }
+
+    // Create add task button
 }
 
-
-
+// Form submission
+const addProjectDialog = document.querySelector('.add-project'); 
+const addProjectForm = document.querySelector('.add-project form');
+addProjectForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    projects.addProject(document.querySelector('.add-project input#title').value);
+    addProjectDialog.close();
+    updateScreen();
+});
 
 
 
