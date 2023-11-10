@@ -6,6 +6,7 @@ class ProjectList {
         this.projectList = [];
     }
 
+    // Set active project index
     setActiveProjectIndex(newActiveProjectIndex) {
         this.activeProjectIndex = newActiveProjectIndex;
     }
