@@ -51,7 +51,7 @@ function appendProjectDOM() {
 // Add tasks to content
 function appendTaskDOM() {
     const content = document.querySelector('.content');
-    content.textContent = 'test';
+    content.textContent = '';
 
     // Create project title
     const projectTitle = document.createElement('h2');
@@ -100,7 +100,7 @@ function appendTaskDOM() {
     }
 
     // Create add task button
-    const addButton = document.querySelector('button');
+    const addButton = document.createElement('button');
     addButton.textContent = '+ Add Task';
     addButton.addEventListener('click', () => {
         addTaskDialog.showModal();
