@@ -39,12 +39,7 @@ function appendProjectDOM() {
     }
 
     // Create add project button
-    const addButton = document.createElement('button');
-    addButton.textContent = '+ Add Project';
-    addButton.addEventListener('click', () => {
-        document.querySelector('.add-project').showModal();
-    });
-    navBar.appendChild(addButton);
+    createAddProjectButton();
 }
 
 // Add tasks to content
@@ -99,6 +94,22 @@ function appendTaskDOM() {
     }
 
     // Create add task button
+    createAddTaskButton();
+}
+
+// Add project and task buttons
+function createAddProjectButton() {
+    const navBar = document.querySelector('.project-list');
+    const addButton = document.createElement('button');
+    addButton.textContent = '+ Add Project';
+    addButton.addEventListener('click', () => {
+        document.querySelector('.add-project').showModal();
+    });
+    navBar.appendChild(addButton);
+}
+
+function createAddTaskButton() {
+    const content = document.querySelector('.content');
     const addButton = document.createElement('button');
     addButton.textContent = '+ Add Task';
     addButton.addEventListener('click', () => {
