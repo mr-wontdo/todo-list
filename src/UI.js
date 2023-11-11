@@ -51,7 +51,7 @@ function appendProjectDOM() {
 // Add tasks to content
 function appendTaskDOM() {
     const content = document.querySelector('.content');
-    content.textContent = '';
+    content.textContent = 'test';
 
     // Create project title
     const projectTitle = document.createElement('h2');
@@ -66,13 +66,10 @@ function appendTaskDOM() {
         // Create task elements
         const taskTitle = document.createElement('p');
         taskTitle.textContent = projects.projectList[projects.activeProjectIndex].taskList[i].title;
-        
         const taskDescription = document.createElement('p');
         taskDescription.textContent = projects.projectList[projects.activeProjectIndex].taskList[i].description;
-
         const taskDueDate = document.createElement('p');
         taskDueDate.textContent = projects.projectList[projects.activeProjectIndex].taskList[i].dueDate;
-
         const taskPriority = document.createElement('p');
         taskPriority.textContent = projects.projectList[projects.activeProjectIndex].taskList[i].priority;
 
@@ -103,6 +100,12 @@ function appendTaskDOM() {
     }
 
     // Create add task button
+    const addButton = document.querySelector('button');
+    addButton.textContent = '+ Add Task';
+    addButton.addEventListener('click', () => {
+        addTaskDialog.showModal();
+    });
+    content.appendChild(addButton);
 }
 
 // Form submission
@@ -114,6 +117,21 @@ addProjectForm.addEventListener('submit', (e) => {
     addProjectDialog.close();
     updateScreen();
 });
+
+const addTaskDialog = document.querySelector('.add-task');
+const addTaskForm = document.querySelector('.add-task form');
+addTaskForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    projects.addTask(
+        document.querySelector('.add-task input#title').value,
+        document.querySelector('.add-task textarea#description').value,
+        document.querySelector('.add-task input#due_date').value,
+        document.querySelector('.add-task select#priority').value
+    );
+    addTaskDialog.close();
+    updateScreen();
+});
+
 
 
 
