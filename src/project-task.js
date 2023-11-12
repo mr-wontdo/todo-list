@@ -34,24 +34,20 @@ class ProjectList {
     }
 
     // Set projects and tasks
-    setProjectTitle(title, projectIndex) {
-        this.projectList[projectIndex].title = title;
+    setTaskTitle(title) {
+        this.projectList[this.activeProjectIndex].taskList[this.activeTaskIndex].title = title;
     }
 
-    setTaskTitle(title, taskIndex) {
-        this.projectList[this.activeProjectIndex].taskList[taskIndex].title = title;
+    setTaskDescription(description) {
+        this.projectList[this.activeProjectIndex].taskList[this.activeTaskIndex].description = description;
     }
 
-    setTaskDescription(description, taskIndex) {
-        this.projectList[this.activeProjectIndex].taskList[taskIndex].description = description;
-    }
-
-    setTaskDueDate(dueDate, taskIndex) {
-        this.projectList[this.activeProjectIndex].taskList[taskIndex].dueDate = dueDate;
+    setTaskDueDate(dueDate) {
+        this.projectList[this.activeProjectIndex].taskList[this.activeTaskIndex].dueDate = dueDate;
     }
     
-    setTaskPriority(priority, taskIndex) {
-        this.projectList[this.activeProjectIndex].taskList[taskIndex].priority = priority;
+    setTaskPriority(priority) {
+        this.projectList[this.activeProjectIndex].taskList[this.activeTaskIndex].priority = priority;
     }
 }
 

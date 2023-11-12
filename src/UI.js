@@ -153,10 +153,10 @@ function createAddTaskButton() {
     const editTaskForm = document.querySelector('.edit-task form');
     editTaskForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        projects.setTaskTitle(document.querySelector('.edit-task input#title').value, projects.activeTaskIndex);
-        projects.setTaskDescription(document.querySelector('.edit-task textarea#description').value, projects.activeTaskIndex);
-        projects.setTaskDueDate(document.querySelector('.edit-task input#due_date').value, projects.activeTaskIndex);
-        projects.setTaskPriority(document.querySelector('.edit-task select#priority').value, projects.activeTaskIndex);
+        projects.setTaskTitle(document.querySelector('.edit-task input#title').value);
+        projects.setTaskDescription(document.querySelector('.edit-task textarea#description').value);
+        projects.setTaskDueDate(document.querySelector('.edit-task input#due_date').value);
+        projects.setTaskPriority(document.querySelector('.edit-task select#priority').value);
         projects.setActiveTaskIndex(null);
         editTaskDialog.close();
         updateScreen();
