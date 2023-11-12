@@ -1,8 +1,8 @@
-export { updateScreen };
-import { projects } from './index.js';
+export { renderScreen };
+import { projects } from './project-task.js';
 
-// Update screen
-function updateScreen() {
+// Render screen
+function renderScreen() {
     console.log(projects);
     appendProjectDOM();
     if (projects.activeProjectIndex !== null) appendTaskDOM();
@@ -21,7 +21,7 @@ function appendProjectDOM() {
         projectTitle.textContent = projects.projectList[i].title;
         projectTitle.addEventListener('click', () => {
             projects.setActiveProjectIndex(i);
-            updateScreen();
+            renderScreen();
         });
 
         // Create delete button
@@ -29,7 +29,7 @@ function appendProjectDOM() {
         deleteButton.textContent = '🗑️';
         deleteButton.addEventListener('click', () => {
             projects.deleteProject(i);
-            updateScreen();
+            renderScreen();
         });
 
         // Append DOM
@@ -80,7 +80,7 @@ function appendTaskDOM() {
         deleteButton.textContent = '🗑️';
         deleteButton.addEventListener('click', () => {
             projects.deleteTask(projects.activeProjectIndex, i);
-            updateScreen();
+            renderScreen();
         });
 
         // Append DOM
@@ -128,7 +128,7 @@ function createAddTaskButton() {
         e.preventDefault();
         projects.addProject(document.querySelector('.add-project input#title').value);
         addProjectDialog.close();
-        updateScreen();
+        renderScreen();
     });
 })();
 
@@ -144,7 +144,7 @@ function createAddTaskButton() {
             document.querySelector('.add-task select#priority').value
         );
         addTaskDialog.close();
-        updateScreen();
+        renderScreen();
     });  
 })();
 
@@ -159,7 +159,7 @@ function createAddTaskButton() {
         projects.setTaskPriority(document.querySelector('.edit-task select#priority').value);
         projects.setActiveTaskIndex(null);
         editTaskDialog.close();
-        updateScreen();
+        renderScreen();
     });  
 })();
 

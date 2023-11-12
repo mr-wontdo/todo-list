@@ -1,4 +1,6 @@
-export { ProjectList };
+export { projects };
+
+const projects = new ProjectList();
 
 class ProjectList {
     constructor() {
