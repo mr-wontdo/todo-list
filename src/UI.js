@@ -1,8 +1,10 @@
 export { loadHomepage };
 import { projects } from './project-task.js';
+import Storage from './storage.js';
 
 // Initial load
 function loadHomepage() {
+    Storage.retrieveStorage();
     renderScreen();
 }
 
@@ -35,6 +37,7 @@ function appendProjectDOM() {
         deleteButton.addEventListener('click', () => {
             projects.deleteProject(i);
             updateActiveProjectIndex(i);
+            Storage.populateStorage();
             renderScreen();
         });
 
@@ -87,6 +90,7 @@ function appendTaskDOM() {
         deleteButton.textContent = '🗑️';
         deleteButton.addEventListener('click', () => {
             projects.deleteTask(projects.activeProjectIndex, i);
+            Storage.populateStorage();
             renderScreen();
         });
 
@@ -145,6 +149,7 @@ function updateActiveProjectIndex(deletedIndex) {
     addProjectForm.addEventListener('submit', (e) => {
         e.preventDefault();
         projects.addProject(document.querySelector('.add-project input#title').value);
+        Storage.populateStorage();
         addProjectDialog.close();
         renderScreen();
     });
@@ -161,6 +166,7 @@ function updateActiveProjectIndex(deletedIndex) {
             document.querySelector('.add-task input#due_date').value,
             document.querySelector('.add-task select#priority').value
         );
+        Storage.populateStorage();
         addTaskDialog.close();
         renderScreen();
     });  
@@ -176,6 +182,7 @@ function updateActiveProjectIndex(deletedIndex) {
         projects.setTaskDueDate(document.querySelector('.edit-task input#due_date').value);
         projects.setTaskPriority(document.querySelector('.edit-task select#priority').value);
         projects.setActiveTaskIndex(null);
+        Storage.populateStorage();
         editTaskDialog.close();
         renderScreen();
     });  
