@@ -59,13 +59,13 @@ function appendTaskDOM() {
 
         // Create task elements
         const taskTitle = document.createElement('p');
-        taskTitle.textContent = projects.projectList[projects.activeProjectIndex].taskList[i].title;
+        taskTitle.textContent = projects.getTaskTitle(projects.activeProjectIndex, i);
         const taskDescription = document.createElement('p');
-        taskDescription.textContent = projects.projectList[projects.activeProjectIndex].taskList[i].description;
+        taskDescription.textContent = projects.getTaskDescription(projects.activeProjectIndex, i);
         const taskDueDate = document.createElement('p');
-        taskDueDate.textContent = projects.projectList[projects.activeProjectIndex].taskList[i].dueDate;
+        taskDueDate.textContent = projects.getTaskDueDate(projects.activeProjectIndex, i);
         const taskPriority = document.createElement('p');
-        taskPriority.textContent = projects.projectList[projects.activeProjectIndex].taskList[i].priority;
+        taskPriority.textContent = projects.getTaskPriority(projects.activeProjectIndex, i);
 
         // Create task actions
         const editButton = document.createElement('button');
@@ -164,8 +164,8 @@ function createAddTaskButton() {
 })();
 
 function populateEditTask() {
-    document.querySelector('.edit-task input#title').value = projects.projectList[projects.activeProjectIndex].taskList[projects.activeTaskIndex].title;
-    document.querySelector('.edit-task textarea#description').value = projects.projectList[projects.activeProjectIndex].taskList[projects.activeTaskIndex].description;
-    document.querySelector('.edit-task input#due_date').value = projects.projectList[projects.activeProjectIndex].taskList[projects.activeTaskIndex].dueDate;
-    document.querySelector('.edit-task select#priority').value = projects.projectList[projects.activeProjectIndex].taskList[projects.activeTaskIndex].priority;
+    document.querySelector('.edit-task input#title').value = projects.getTaskTitle(projects.activeProjectIndex, projects.activeTaskIndex);
+    document.querySelector('.edit-task textarea#description').value = projects.getTaskDescription(projects.activeProjectIndex, projects.activeTaskIndex);
+    document.querySelector('.edit-task input#due_date').value = projects.getTaskDueDate(projects.activeProjectIndex, projects.activeTaskIndex);
+    document.querySelector('.edit-task select#priority').value = projects.getTaskPriority(projects.activeProjectIndex, projects.activeTaskIndex);
 }

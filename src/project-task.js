@@ -33,6 +33,23 @@ class ProjectList {
         this.projectList[projectIndex].taskList.splice(taskIndex, 1);
     }
 
+    // Get tasks
+    getTaskTitle(projectIndex, taskIndex) {
+        return this.projectList[projectIndex].taskList[taskIndex].title;
+    }
+
+    getTaskDescription(projectIndex, taskIndex) {
+        return this.projectList[projectIndex].taskList[taskIndex].description;
+    }
+
+    getTaskDueDate(projectIndex, taskIndex) {
+        return this.projectList[projectIndex].taskList[taskIndex].dueDate;
+    }
+
+    getTaskPriority(projectIndex, taskIndex) {
+        return this.projectList[projectIndex].taskList[taskIndex].priority;
+    }
+
     // Set projects and tasks
     setTaskTitle(title) {
         this.projectList[this.activeProjectIndex].taskList[this.activeTaskIndex].title = title;
