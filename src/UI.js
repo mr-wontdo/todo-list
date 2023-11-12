@@ -1,11 +1,16 @@
-export { renderScreen };
+export { loadHomepage };
 import { projects } from './project-task.js';
+
+// Initial load
+function loadHomepage() {
+    renderScreen();
+}
 
 // Render screen
 function renderScreen() {
     console.log(projects);
     appendProjectDOM();
-    if (projects.activeProjectIndex !== null) appendTaskDOM();
+    appendTaskDOM();
 }
 
 // Add projects to navbar
@@ -29,6 +34,7 @@ function appendProjectDOM() {
         deleteButton.textContent = '🗑️';
         deleteButton.addEventListener('click', () => {
             projects.deleteProject(i);
+            updateActiveProjectIndex(i);
             renderScreen();
         });
 
@@ -46,6 +52,7 @@ function appendProjectDOM() {
 function appendTaskDOM() {
     const content = document.querySelector('.content');
     content.textContent = '';
+    if (projects.activeProjectIndex === null) return;
 
     // Create project title
     const projectTitle = document.createElement('h2');
@@ -168,4 +175,15 @@ function populateEditTask() {
     document.querySelector('.edit-task textarea#description').value = projects.getTaskDescription(projects.activeProjectIndex, projects.activeTaskIndex);
     document.querySelector('.edit-task input#due_date').value = projects.getTaskDueDate(projects.activeProjectIndex, projects.activeTaskIndex);
     document.querySelector('.edit-task select#priority').value = projects.getTaskPriority(projects.activeProjectIndex, projects.activeTaskIndex);
+}
+
+// Update active project index when deleting projects
+function updateActiveProjectIndex(deletedIndex) {
+    if (projects.activeProjectIndex < deletedIndex) {
+        return;
+    } else if (projects.activeProjectIndex > deletedIndex) {
+        projects.activeProjectIndex -= 1;
+    } else if (projects.activeProjectIndex === deletedIndex) {
+        projects.activeProjectIndex = null;
+    } 
 }
