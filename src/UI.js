@@ -127,6 +127,17 @@ function createAddTaskButton() {
     content.appendChild(addButton);
 }
 
+// Update active project index when deleting projects
+function updateActiveProjectIndex(deletedIndex) {
+    if (projects.activeProjectIndex < deletedIndex) {
+        return;
+    } else if (projects.activeProjectIndex > deletedIndex) {
+        projects.activeProjectIndex -= 1;
+    } else if (projects.activeProjectIndex === deletedIndex) {
+        projects.activeProjectIndex = null;
+    } 
+}
+
 // Form submission
 (function addProjectEventListener() {
     const addProjectDialog = document.querySelector('.add-project'); 
@@ -175,15 +186,4 @@ function populateEditTask() {
     document.querySelector('.edit-task textarea#description').value = projects.getTaskDescription(projects.activeProjectIndex, projects.activeTaskIndex);
     document.querySelector('.edit-task input#due_date').value = projects.getTaskDueDate(projects.activeProjectIndex, projects.activeTaskIndex);
     document.querySelector('.edit-task select#priority').value = projects.getTaskPriority(projects.activeProjectIndex, projects.activeTaskIndex);
-}
-
-// Update active project index when deleting projects
-function updateActiveProjectIndex(deletedIndex) {
-    if (projects.activeProjectIndex < deletedIndex) {
-        return;
-    } else if (projects.activeProjectIndex > deletedIndex) {
-        projects.activeProjectIndex -= 1;
-    } else if (projects.activeProjectIndex === deletedIndex) {
-        projects.activeProjectIndex = null;
-    } 
 }
