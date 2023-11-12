@@ -71,7 +71,9 @@ function appendTaskDOM() {
         const editButton = document.createElement('button');
         editButton.textContent = '✎';
         editButton.addEventListener('click', () => {
-
+            projects.setActiveTaskIndex(i);
+            populateEditTask();
+            document.querySelector('.edit-task').showModal();
         });
 
         const deleteButton = document.createElement('button');
@@ -145,3 +147,25 @@ function createAddTaskButton() {
         updateScreen();
     });  
 })();
+
+(function editTaskEventListener() {
+    const editTaskDialog = document.querySelector('.edit-task');
+    const editTaskForm = document.querySelector('.edit-task form');
+    editTaskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        projects.setTaskTitle(document.querySelector('.edit-task input#title').value, projects.activeTaskIndex);
+        projects.setTaskDescription(document.querySelector('.edit-task textarea#description').value, projects.activeTaskIndex);
+        projects.setTaskDueDate(document.querySelector('.edit-task input#due_date').value, projects.activeTaskIndex);
+        projects.setTaskPriority(document.querySelector('.edit-task select#priority').value, projects.activeTaskIndex);
+        projects.setActiveTaskIndex(null);
+        editTaskDialog.close();
+        updateScreen();
+    });  
+})();
+
+function populateEditTask() {
+    document.querySelector('.edit-task input#title').value = projects.projectList[projects.activeProjectIndex].taskList[projects.activeTaskIndex].title;
+    document.querySelector('.edit-task textarea#description').value = projects.projectList[projects.activeProjectIndex].taskList[projects.activeTaskIndex].description;
+    document.querySelector('.edit-task input#due_date').value = projects.projectList[projects.activeProjectIndex].taskList[projects.activeTaskIndex].dueDate;
+    document.querySelector('.edit-task select#priority').value = projects.projectList[projects.activeProjectIndex].taskList[projects.activeTaskIndex].priority;
+}
