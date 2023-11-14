@@ -203,7 +203,8 @@ function populateEditTask() {
 // Default project list logic
 const defaultProjects = {
     isInboxActive: null,
-    isTodayActive: null
+    isTodayActive: null,
+    isThisWeekActive: null
 };
 
 function setDefaultProjectsInactive() {
@@ -224,6 +225,9 @@ function setDefaultProjectsInactive() {
             case 'today':
                 defaultProjects.isTodayActive = true
                 break;
+            case 'this-week':
+                defaultProjects.isThisWeekActive = true
+                break;
         }
         appendInboxDOM();
     }))
@@ -238,6 +242,11 @@ function appendInboxDOM() {
             // Filter projects due today
             if (defaultProjects.isTodayActive === true) {
                 if (projects.getTaskDueDate(i, j) !== getTodayDate()) continue;
+            }
+
+            // Filter projects due this week 
+            if (defaultProjects.isThisWeekActive === true) {
+                if (!(projects.getTaskDueDate(i, j) >= getWeekStartingDate() && projects.getTaskDueDate(i, j) <= getWeekEndingDate())) continue;
             }
 
             const task = document.createElement('div');
