@@ -184,7 +184,12 @@ function updateActiveProjectIndex(deletedIndex) {
         projects.setActiveTaskIndex(null);
         Storage.populateStorage();
         editTaskDialog.close();
-        renderScreen();
+        if (isInboxActive) {
+            appendInboxDOM();
+            isInboxActive = null;
+        } else {
+            renderScreen();  
+        }
     });  
 })();
 
@@ -193,4 +198,70 @@ function populateEditTask() {
     document.querySelector('.edit-task textarea#description').value = projects.getTaskDescription(projects.activeProjectIndex, projects.activeTaskIndex);
     document.querySelector('.edit-task input#due_date').value = projects.getTaskDueDate(projects.activeProjectIndex, projects.activeTaskIndex);
     document.querySelector('.edit-task select#priority').value = projects.getTaskPriority(projects.activeProjectIndex, projects.activeTaskIndex);
+}
+
+// Default project list logic
+let isInboxActive = null;
+
+(function inboxEventListener() {
+    const inboxButton = document.querySelector('.inbox')
+
+    inboxButton.addEventListener('click', () => {
+        projects.setActiveProjectIndex(null);
+        projects.setActiveTaskIndex(null);
+        appendInboxDOM();
+    });
+})();
+
+function appendInboxDOM() {
+    const content = document.querySelector('.content');
+    content.textContent = '';
+
+    for (let i = 0; i < projects.projectList.length; i++) {
+        for (let j = 0; j < projects.projectList[i].taskList.length; j++) {
+            const task = document.createElement('div');
+            const taskElements = document.createElement('div');
+            const taskActions = document.createElement('div');
+
+            // Create task elements
+            const taskTitle = document.createElement('p');
+            taskTitle.textContent = projects.getTaskTitle(i, j);
+            const taskDescription = document.createElement('p');
+            taskDescription.textContent = projects.getTaskDescription(i, j);
+            const taskDueDate = document.createElement('p');
+            taskDueDate.textContent = projects.getTaskDueDate(i, j);
+            const taskPriority = document.createElement('p');
+            taskPriority.textContent = projects.getTaskPriority(i, j);
+
+            // Create task actions
+            const editButton = document.createElement('button');
+            editButton.textContent = '✎';
+            editButton.addEventListener('click', () => {
+                projects.setActiveProjectIndex(i);
+                projects.setActiveTaskIndex(j);
+                populateEditTask();
+                isInboxActive = true;
+                document.querySelector('.edit-task').showModal();
+            });
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '🗑️';
+            deleteButton.addEventListener('click', () => {
+                projects.deleteTask(i, j);
+                Storage.populateStorage();
+                appendInboxDOM();
+            });
+
+            // Append DOM
+            content.appendChild(task);
+            task.appendChild(taskElements);
+            task.appendChild(taskActions);
+            taskElements.appendChild(taskTitle);
+            taskElements.appendChild(taskDescription);
+            taskElements.appendChild(taskDueDate);
+            taskElements.appendChild(taskPriority);
+            taskActions.appendChild(editButton);
+            taskActions.appendChild(deleteButton);
+        }
+    }
 }
