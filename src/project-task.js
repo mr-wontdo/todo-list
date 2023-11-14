@@ -23,8 +23,8 @@ class ProjectList {
         this.projectList.push(new Project(title));
     }
 
-    addTask(title, description, dueDate, priority) {
-        this.projectList[this.activeProjectIndex].taskList.push(new Task(title, description, dueDate, priority));
+    addTask(title, description, dueDate, priority, complete) {
+        this.projectList[this.activeProjectIndex].taskList.push(new Task(title, description, dueDate, priority, complete));
     }
 
     deleteProject(projectIndex) {
@@ -52,6 +52,10 @@ class ProjectList {
         return this.projectList[projectIndex].taskList[taskIndex].priority;
     }
 
+    getTaskComplete(projectIndex, taskIndex) {
+        return this.projectList[projectIndex].taskList[taskIndex].complete;
+    }
+
     // Set projects and tasks
     setTaskTitle(title) {
         this.projectList[this.activeProjectIndex].taskList[this.activeTaskIndex].title = title;
@@ -68,6 +72,10 @@ class ProjectList {
     setTaskPriority(priority) {
         this.projectList[this.activeProjectIndex].taskList[this.activeTaskIndex].priority = priority;
     }
+
+    setTaskComplete(complete) {
+        this.projectList[this.activeProjectIndex].taskList[this.activeTaskIndex].complete = complete;
+    }
 }
 
 class Project {
@@ -78,10 +86,34 @@ class Project {
 }
 
 class Task {
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, dueDate, priority, complete) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.complete = complete;
     }
 }
+
+projects.addProject('Project One');
+projects.addProject('Project Two');
+projects.addProject('Project Three');
+projects.addProject('Project Four');
+
+projects.setActiveProjectIndex(0);
+projects.addTask('Item One', 'Description of Item One', '2023-01-01', 'high', true);
+projects.addTask('Item Two', 'Description of Item Two', '2023-01-01', 'high', true);
+
+projects.setActiveProjectIndex(1);
+projects.addTask('Item Three', 'Description of Item Three', '2023-01-01', 'high', true);
+projects.addTask('Item Four', 'Description of Item Four', '2023-01-01', 'high', true);
+
+projects.setActiveProjectIndex(2);
+projects.addTask('Item Five', 'Description of Item Five', '2023-01-01', 'high', true);
+projects.addTask('Item Six', 'Description of Item Six', '2023-01-01', 'high', true);
+
+projects.setActiveProjectIndex(3);
+projects.addTask('Item Seven', 'Description of Item Seven', '2023-01-01', 'high', true);
+projects.addTask('Item Eight', 'Description of Item Eight', '2023-01-01', 'high', true);
+
+projects.setActiveProjectIndex(null);

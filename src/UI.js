@@ -77,6 +77,19 @@ function appendTaskDOM() {
         taskDueDate.textContent = projects.getTaskDueDate(projects.activeProjectIndex, i);
         const taskPriority = document.createElement('p');
         taskPriority.textContent = projects.getTaskPriority(projects.activeProjectIndex, i);
+        
+        const taskComplete = document.createElement('input');
+        taskComplete.setAttribute('type', 'checkbox');
+        taskComplete.setAttribute('id', 'complete');
+        taskComplete.setAttribute('name', 'complete');
+        taskComplete.checked = projects.getTaskComplete(projects.activeProjectIndex, i);
+        taskComplete.addEventListener('click', () => {
+            projects.setActiveTaskIndex(i);
+            const newTaskComplete = taskComplete.checked ? true : false;
+            projects.setTaskComplete(newTaskComplete, projects.activeProjectIndex, projects.activeTaskIndex);
+            Storage.populateStorage();
+            projects.setActiveTaskIndex(null);
+        });
 
         // Create task actions
         const editButton = document.createElement('button');
@@ -103,6 +116,7 @@ function appendTaskDOM() {
         taskElements.appendChild(taskDescription);
         taskElements.appendChild(taskDueDate);
         taskElements.appendChild(taskPriority);
+        taskElements.appendChild(taskComplete);
         taskActions.appendChild(editButton);
         taskActions.appendChild(deleteButton);
     }
@@ -186,7 +200,7 @@ function updateActiveProjectIndex(deletedIndex) {
         Storage.populateStorage();
         editTaskDialog.close();
         if (Object.values(defaultProjects).includes(true)) {
-            appendInboxDOM();
+            appendDefaultProjectDOM();
         } else {
             renderScreen();  
         }
@@ -229,11 +243,11 @@ function setDefaultProjectsInactive() {
                 defaultProjects.isThisWeekActive = true
                 break;
         }
-        appendInboxDOM();
+        appendDefaultProjectDOM();
     }))
 })();
 
-function appendInboxDOM() {
+function appendDefaultProjectDOM() {
     const content = document.querySelector('.content');
     content.textContent = '';
 
@@ -278,7 +292,7 @@ function appendInboxDOM() {
             deleteButton.addEventListener('click', () => {
                 projects.deleteTask(i, j);
                 Storage.populateStorage();
-                appendInboxDOM();
+                appendDefaultProjectDOM();
             });
 
             // Append DOM
@@ -295,6 +309,7 @@ function appendInboxDOM() {
     }
 }
 
+// Get dates
 function getTodayDate() {
     const yyyy = new Date().getFullYear();
     let mm = new Date().getMonth() + 1;
