@@ -277,6 +277,21 @@ function appendDefaultProjectDOM() {
             const taskPriority = document.createElement('p');
             taskPriority.textContent = projects.getTaskPriority(i, j);
 
+            const taskComplete = document.createElement('input');
+            taskComplete.setAttribute('type', 'checkbox');
+            taskComplete.setAttribute('id', 'complete');
+            taskComplete.setAttribute('name', 'complete');
+            taskComplete.checked = projects.getTaskComplete(i, j);
+            taskComplete.addEventListener('click', () => {
+                projects.setActiveProjectIndex(i);
+                projects.setActiveTaskIndex(j);
+                const newTaskComplete = taskComplete.checked ? true : false;
+                projects.setTaskComplete(newTaskComplete, projects.activeProjectIndex, projects.activeTaskIndex);
+                Storage.populateStorage();
+                projects.setActiveProjectIndex(null);
+                projects.setActiveTaskIndex(null);
+            });
+
             // Create task actions
             const editButton = document.createElement('button');
             editButton.textContent = '✎';
@@ -303,6 +318,7 @@ function appendDefaultProjectDOM() {
             taskElements.appendChild(taskDescription);
             taskElements.appendChild(taskDueDate);
             taskElements.appendChild(taskPriority);
+            taskElements.appendChild(taskComplete);
             taskActions.appendChild(editButton);
             taskActions.appendChild(deleteButton);
         }
