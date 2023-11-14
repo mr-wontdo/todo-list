@@ -27,6 +27,7 @@ function appendProjectDOM() {
         const projectTitle = document.createElement('button');
         projectTitle.textContent = projects.projectList[i].title;
         projectTitle.addEventListener('click', () => {
+            setDefaultProjectsInactive();
             projects.setActiveProjectIndex(i);
             renderScreen();
         });
@@ -184,9 +185,8 @@ function updateActiveProjectIndex(deletedIndex) {
         projects.setActiveTaskIndex(null);
         Storage.populateStorage();
         editTaskDialog.close();
-        if (isInboxActive) {
+        if (Object.values(defaultProjects).includes(true)) {
             appendInboxDOM();
-            isInboxActive = null;
         } else {
             renderScreen();  
         }
@@ -201,16 +201,28 @@ function populateEditTask() {
 }
 
 // Default project list logic
-let isInboxActive = null;
+const defaultProjects = {
+    isInboxActive: null,
+};
 
-(function inboxEventListener() {
-    const inboxButton = document.querySelector('.inbox')
+function setDefaultProjectsInactive() {
+    for (const key in defaultProjects) {
+        defaultProjects[key] = null;
+    }
+}
 
-    inboxButton.addEventListener('click', () => {
+(function defaultProjectEventListener() {
+    document.querySelectorAll('.default-project-list button').forEach(button => button.addEventListener('click', (e) => {
+        setDefaultProjectsInactive();
         projects.setActiveProjectIndex(null);
         projects.setActiveTaskIndex(null);
+        switch (e.target.className) {
+            case 'inbox':
+                defaultProjects.isInboxActive = true
+                break;
+        }
         appendInboxDOM();
-    });
+    }))
 })();
 
 function appendInboxDOM() {
@@ -240,7 +252,6 @@ function appendInboxDOM() {
                 projects.setActiveProjectIndex(i);
                 projects.setActiveTaskIndex(j);
                 populateEditTask();
-                isInboxActive = true;
                 document.querySelector('.edit-task').showModal();
             });
 
@@ -264,4 +275,37 @@ function appendInboxDOM() {
             taskActions.appendChild(deleteButton);
         }
     }
+}
+
+function getTodayDate() {
+    const yyyy = new Date().getFullYear();
+    let mm = new Date().getMonth() + 1;
+    let dd = new Date().getDate();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    return yyyy + '-' + mm + '-' + dd;
+}
+
+function getWeekStartingDate() {
+    var today = new Date()
+    var starting = new Date(today.setDate(today.getDate() - today.getDay()+1));
+
+    const yyyy = starting.getFullYear();
+    let mm = starting.getMonth() + 1;
+    let dd = starting.getDate();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    return yyyy + '-' + mm + '-' + dd;
+}
+
+function getWeekEndingDate() {
+    var today = new Date()
+    var ending = new Date(today.setDate(today.getDate() - today.getDay()+7));
+
+    const yyyy = ending.getFullYear();
+    let mm = ending.getMonth() + 1;
+    let dd = ending.getDate();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    return yyyy + '-' + mm + '-' + dd;
 }
