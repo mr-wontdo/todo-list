@@ -10,14 +10,20 @@
     --obsidian-blue: #4c525d;
     --snow-white: #f5f7f7;
     --starry-yellow: #f0e2cd;
+    --poppins: 'Poppins', sans-serif;
 }
 
 body {
     background-color: var(--snow-white);
+    font-family: var(--poppins);
     display: grid;
     grid-template-rows: 96px 1fr 64px;
     grid-template-columns: minmax(200px, 300px) 1fr;
     height: 100vh;
+}
+
+button {
+    font-family: inherit;
 }
 
 /* Header */
@@ -174,6 +180,7 @@ header > h1 {
     -webkit-appearance: none;
     outline: none;
     cursor: pointer;
+    margin-top: 4px;
     grid-area: 1 / 1 / 2 / 2;
 }
 
