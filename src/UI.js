@@ -251,6 +251,13 @@ function appendDefaultProjectDOM() {
     const content = document.querySelector('.content');
     content.textContent = '';
 
+    // Create project title
+    const projectTitle = document.createElement('h2');
+    if (defaultProjects.isInboxActive === true) projectTitle.textContent = 'Inbox';
+    if (defaultProjects.isTodayActive === true) projectTitle.textContent = 'Today';
+    if (defaultProjects.isThisWeekActive === true) projectTitle.textContent = 'This Week';
+    content.appendChild(projectTitle);
+
     for (let i = 0; i < projects.projectList.length; i++) {
         for (let j = 0; j < projects.projectList[i].taskList.length; j++) {
             // Filter projects due today
