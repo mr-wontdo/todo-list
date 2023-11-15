@@ -79,8 +79,9 @@ function appendTaskDOM() {
         taskDueDate.textContent = projects.getTaskDueDate(projects.activeProjectIndex, i);
         taskDueDate.classList.add('due-date');
         const taskPriority = document.createElement('p');
-        taskPriority.textContent = projects.getTaskPriority(projects.activeProjectIndex, i);
+        taskPriority.textContent = capitalizeFirstLetter(projects.getTaskPriority(projects.activeProjectIndex, i));
         taskPriority.classList.add('priority');
+        taskPriority.classList.add(projects.getTaskPriority(projects.activeProjectIndex, i));
         
         const taskComplete = document.createElement('input');
         taskComplete.setAttribute('type', 'checkbox');
@@ -296,8 +297,9 @@ function appendDefaultProjectDOM() {
             taskDueDate.textContent = projects.getTaskDueDate(i, j);
             taskDueDate.classList.add('due-date');
             const taskPriority = document.createElement('p');
-            taskPriority.textContent = projects.getTaskPriority(i, j);
+            taskPriority.textContent = capitalizeFirstLetter(projects.getTaskPriority(i, j));
             taskPriority.classList.add('priority');
+            taskPriority.classList.add(projects.getTaskPriority(i, j));
 
             const taskComplete = document.createElement('input');
             taskComplete.setAttribute('type', 'checkbox');
@@ -354,7 +356,7 @@ function appendDefaultProjectDOM() {
     }
 }
 
-// Get dates
+// Other functions
 function getTodayDate() {
     const yyyy = new Date().getFullYear();
     let mm = new Date().getMonth() + 1;
@@ -388,6 +390,10 @@ function getWeekEndingDate() {
     return yyyy + '-' + mm + '-' + dd;
 }
 
-function strikeThrough(text) {
-    return text.split('').map(char => char + '\u0336').join('') 
+function strikeThrough(string) {
+    return string.split('').map(char => char + '\u0336').join('') 
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
