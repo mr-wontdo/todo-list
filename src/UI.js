@@ -93,7 +93,14 @@ function appendTaskDOM() {
             projects.setTaskComplete(newTaskComplete, projects.activeProjectIndex, projects.activeTaskIndex);
             Storage.populateStorage();
             projects.setActiveTaskIndex(null);
+            renderScreen();
         });
+
+        // Strike through text if task is complete
+        if (projects.getTaskComplete(projects.activeProjectIndex, i)) {
+            taskTitle.textContent = strikeThrough(projects.getTaskTitle(projects.activeProjectIndex, i));
+            taskDescription.textContent = strikeThrough(projects.getTaskDescription(projects.activeProjectIndex, i));
+        }
 
         // Create task actions
         const editButton = document.createElement('button');
@@ -305,7 +312,14 @@ function appendDefaultProjectDOM() {
                 Storage.populateStorage();
                 projects.setActiveProjectIndex(null);
                 projects.setActiveTaskIndex(null);
+                appendDefaultProjectDOM();
             });
+
+            // Strike through text if task is complete
+            if (projects.getTaskComplete(i, j)) {
+                taskTitle.textContent = strikeThrough(projects.getTaskTitle(i, j));
+                taskDescription.textContent = strikeThrough(projects.getTaskDescription(i, j));
+            }
 
             // Create task actions
             const editButton = document.createElement('button');
@@ -372,4 +386,8 @@ function getWeekEndingDate() {
     if (dd < 10) dd = '0' + dd;
     if (mm < 10) mm = '0' + mm;
     return yyyy + '-' + mm + '-' + dd;
+}
+
+function strikeThrough(text) {
+    return text.split('').map(char => char + '\u0336').join('') 
 }
