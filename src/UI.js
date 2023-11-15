@@ -71,12 +71,16 @@ function appendTaskDOM() {
         // Create task elements
         const taskTitle = document.createElement('p');
         taskTitle.textContent = projects.getTaskTitle(projects.activeProjectIndex, i);
+        taskTitle.classList.add('title');
         const taskDescription = document.createElement('p');
         taskDescription.textContent = projects.getTaskDescription(projects.activeProjectIndex, i);
+        taskDescription.classList.add('description');
         const taskDueDate = document.createElement('p');
         taskDueDate.textContent = projects.getTaskDueDate(projects.activeProjectIndex, i);
+        taskDueDate.classList.add('due-date');
         const taskPriority = document.createElement('p');
         taskPriority.textContent = projects.getTaskPriority(projects.activeProjectIndex, i);
+        taskPriority.classList.add('priority');
         
         const taskComplete = document.createElement('input');
         taskComplete.setAttribute('type', 'checkbox');
@@ -277,12 +281,16 @@ function appendDefaultProjectDOM() {
             // Create task elements
             const taskTitle = document.createElement('p');
             taskTitle.textContent = projects.getTaskTitle(i, j);
+            taskTitle.classList.add('title');
             const taskDescription = document.createElement('p');
+            taskDescription.classList.add('description');
             taskDescription.textContent = projects.getTaskDescription(i, j);
             const taskDueDate = document.createElement('p');
             taskDueDate.textContent = projects.getTaskDueDate(i, j);
+            taskDueDate.classList.add('due-date');
             const taskPriority = document.createElement('p');
             taskPriority.textContent = projects.getTaskPriority(i, j);
+            taskPriority.classList.add('priority');
 
             const taskComplete = document.createElement('input');
             taskComplete.setAttribute('type', 'checkbox');
