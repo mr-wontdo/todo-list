@@ -227,9 +227,9 @@ function populateEditTask() {
 
 // Default project list logic
 const defaultProjects = {
-    isInboxActive: null,
+    isAllActive: null,
     isTodayActive: null,
-    isThisWeekActive: null
+    isWeekActive: null
 };
 
 function setDefaultProjectsInactive() {
@@ -244,14 +244,14 @@ function setDefaultProjectsInactive() {
         projects.setActiveProjectIndex(null);
         projects.setActiveTaskIndex(null);
         switch (e.target.className) {
-            case 'inbox':
-                defaultProjects.isInboxActive = true
+            case 'all':
+                defaultProjects.isAllActive = true
                 break;
             case 'today':
                 defaultProjects.isTodayActive = true
                 break;
-            case 'this-week':
-                defaultProjects.isThisWeekActive = true
+            case 'week':
+                defaultProjects.isWeekActive = true
                 break;
         }
         appendDefaultProjectDOM();
@@ -264,9 +264,9 @@ function appendDefaultProjectDOM() {
 
     // Create project title
     const projectTitle = document.createElement('h2');
-    if (defaultProjects.isInboxActive === true) projectTitle.textContent = 'Inbox';
-    if (defaultProjects.isTodayActive === true) projectTitle.textContent = 'Today';
-    if (defaultProjects.isThisWeekActive === true) projectTitle.textContent = 'This Week';
+    if (defaultProjects.isAllActive === true) projectTitle.textContent = 'All Tasks';
+    if (defaultProjects.isTodayActive === true) projectTitle.textContent = 'Today\'s Tasks';
+    if (defaultProjects.isWeekActive === true) projectTitle.textContent = 'This Week\'s Task';
     content.appendChild(projectTitle);
 
     for (let i = 0; i < projects.projectList.length; i++) {
@@ -277,7 +277,7 @@ function appendDefaultProjectDOM() {
             }
 
             // Filter projects due this week 
-            if (defaultProjects.isThisWeekActive === true) {
+            if (defaultProjects.isWeekActive === true) {
                 if (!(projects.getTaskDueDate(i, j) >= getWeekStartingDate() && projects.getTaskDueDate(i, j) <= getWeekEndingDate())) continue;
             }
 
