@@ -141,7 +141,7 @@ function appendTaskDOM() {
 function createAddProjectButton() {
     const navBar = document.querySelector('.project-list');
     const addButton = document.createElement('button');
-    addButton.textContent = '+ Add Project';
+    addButton.textContent = 'Add Project';
     addButton.addEventListener('click', () => {
         document.querySelector('.add-project').showModal();
     });
@@ -151,7 +151,7 @@ function createAddProjectButton() {
 function createAddTaskButton() {
     const content = document.querySelector('.content');
     const addButton = document.createElement('button');
-    addButton.textContent = '+ Add Task';
+    addButton.textContent = 'Add Task';
     addButton.addEventListener('click', () => {
         document.querySelector('.add-task').showModal();
     });

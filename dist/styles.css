@@ -18,7 +18,7 @@ body {
     font-family: var(--poppins);
     display: grid;
     grid-template-rows: 96px 1fr 64px;
-    grid-template-columns: minmax(200px, 300px) 1fr;
+    grid-template-columns: minmax(300px, 400px) 1fr;
     height: 100vh;
 }
 
@@ -50,46 +50,103 @@ header > h1 {
     padding: 24px;
 }
 
+.navbar > h2 {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.navbar button {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+}
+
 .default-project-list {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
-.default-project-list button {
-    text-align: start;
+.default-project-list > button {
+    background-color: var(--icy-blue);
+}
+
+.default-project-list > button:hover {
+    background-color: #b6c3c9;  
+}
+
+.default-project-list > button::before {
+    display: inline-block;
+    height: auto;
+    width: 24px;
+    margin-right: 6px;
+    position: relative;
+    top: 3px;
 }
 
 .all::before {
     content: url('./images/all.svg');
-    display: inline-block;
-    height: auto;
-    width: 10px;
 }
 
 .today::before {
     content: url('./images/today.svg');
-    display: inline-block;
-    height: auto;
-    width: 10px;
 }
 
 .week::before {
     content: url('./images/week.svg');
-    display: inline-block;
-    height: auto;
-    width: 10px;
 }
 
 .project-list {
     display: flex;
     flex-direction: column;
+    gap: 4px;
+}
+
+.project-list > div {
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-list > div:hover {
+    background-color: #b6c3c9;
+}
+
+.project-list > div > button {
+    background-color: inherit;
 }
 
 .project-list > div > button:first-child::before {
     content: url('./images/list.svg');
     display: inline-block;
     height: auto;
-    width: 10px;
+    width: 24px;
+    margin-right: 6px;
+    position: relative;
+    top: 3px;
+}
+
+.project-list > button {
+    background-color: var(--icy-blue);
+    margin-top: 12px;
+}
+
+.project-list > button:hover {
+    background-color: #b6c3c9;
+}
+
+.project-list > button::before {
+    content: url('./images/plus.svg');
+    display: inline-block;
+    height: auto;
+    width: 24px;
+    margin-right: 4px;
+    position: relative;
+    top: 4px;
 }
 
 /* Content */
