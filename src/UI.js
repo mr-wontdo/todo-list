@@ -33,7 +33,8 @@ function appendProjectDOM() {
         // Create delete button
         const deleteButton = document.createElement('button');
         deleteButton.style.visibility = 'hidden';
-        deleteButton.addEventListener('click', () => {
+        deleteButton.addEventListener('click', (e) => {
+            e.stopPropagation();
             projects.deleteProject(i);
             updateActiveProjectIndex(i);
             Storage.populateStorage();
@@ -223,6 +224,24 @@ function updateActiveProjectIndex(deletedIndex) {
             renderScreen();  
         }
     });  
+})();
+
+(function closeFormEventListener() {
+    const closeAddProjectButton = document.querySelector('.add-project svg');
+    closeAddProjectButton.addEventListener('click', () => {
+        document.querySelector('dialog.add-project').close();
+        document.querySelector('.add-project > form').reset();
+    })
+    const closeAddTaskButton = document.querySelector('.add-task svg');
+    closeAddTaskButton.addEventListener('click', () => {
+        document.querySelector('dialog.add-task').close();
+        document.querySelector('.add-task > form').reset();
+    })
+    const closeEditTaskButton = document.querySelector('.edit-task svg');
+    closeEditTaskButton.addEventListener('click', () => {
+        document.querySelector('dialog.edit-task').close();
+        document.querySelector('.edit-task > form').reset();
+    })
 })();
 
 function populateEditTask() {
