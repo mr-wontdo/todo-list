@@ -82,7 +82,7 @@ function appendTaskDOM() {
         taskDescription.textContent = projects.getTaskDescription(projects.activeProjectIndex, i);
         taskDescription.classList.add('description');
         const taskDueDate = document.createElement('p');
-        taskDueDate.textContent = projects.getTaskDueDate(projects.activeProjectIndex, i);
+        taskDueDate.textContent = formatDate(projects.getTaskDueDate(projects.activeProjectIndex, i));
         taskDueDate.classList.add('due-date');
         const taskPriority = document.createElement('p');
         taskPriority.textContent = capitalizeFirstLetter(projects.getTaskPriority(projects.activeProjectIndex, i));
@@ -321,7 +321,7 @@ function appendDefaultProjectDOM() {
             taskDescription.classList.add('description');
             taskDescription.textContent = projects.getTaskDescription(i, j);
             const taskDueDate = document.createElement('p');
-            taskDueDate.textContent = projects.getTaskDueDate(i, j);
+            taskDueDate.textContent = formatDate(projects.getTaskDueDate(i, j));
             taskDueDate.classList.add('due-date');
             const taskPriority = document.createElement('p');
             taskPriority.textContent = capitalizeFirstLetter(projects.getTaskPriority(i, j));
@@ -386,8 +386,8 @@ function appendDefaultProjectDOM() {
 // Other functions
 function getTodayDate() {
     const yyyy = new Date().getFullYear();
-    let mm = new Date().getMonth() + 1;
-    let dd = new Date().getDate();
+    const mm = new Date().getMonth() + 1;
+    const dd = new Date().getDate();
     if (dd < 10) dd = '0' + dd;
     if (mm < 10) mm = '0' + mm;
     return yyyy + '-' + mm + '-' + dd;
@@ -395,11 +395,11 @@ function getTodayDate() {
 
 function getWeekStartingDate() {
     var today = new Date()
-    var starting = new Date(today.setDate(today.getDate() - today.getDay()+1));
+    var starting = new Date(today.setDate(today.getDate() - today.getDay() + 1));
 
     const yyyy = starting.getFullYear();
-    let mm = starting.getMonth() + 1;
-    let dd = starting.getDate();
+    const mm = starting.getMonth() + 1;
+    const dd = starting.getDate();
     if (dd < 10) dd = '0' + dd;
     if (mm < 10) mm = '0' + mm;
     return yyyy + '-' + mm + '-' + dd;
@@ -407,14 +407,21 @@ function getWeekStartingDate() {
 
 function getWeekEndingDate() {
     var today = new Date()
-    var ending = new Date(today.setDate(today.getDate() - today.getDay()+7));
+    var ending = new Date(today.setDate(today.getDate() - today.getDay() + 7));
 
     const yyyy = ending.getFullYear();
-    let mm = ending.getMonth() + 1;
-    let dd = ending.getDate();
+    const mm = ending.getMonth() + 1;
+    const dd = ending.getDate();
     if (dd < 10) dd = '0' + dd;
     if (mm < 10) mm = '0' + mm;
     return yyyy + '-' + mm + '-' + dd;
+}
+
+function formatDate(date) {
+    const yyyy = date.slice(0, 4);
+    const mm = date.slice(5, 7);
+    const dd = date.slice(8, 10);
+    return mm + '/' + dd + '/' + yyyy;
 }
 
 function strikeThrough(string) {
