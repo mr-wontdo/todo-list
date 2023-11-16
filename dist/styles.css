@@ -3,7 +3,6 @@
     font-family: inherit;
     margin: 0;
     padding: 0;
-    /* border: 1px solid black; */
 }
 
 :root {
@@ -21,10 +20,6 @@ body {
     grid-template-rows: 96px 1fr 64px;
     grid-template-columns: minmax(300px, 400px) 1fr;
     height: 100vh;
-}
-
-*:focus {
-    outline: 1px solid black;
 }
 
 /* Header */
@@ -112,6 +107,7 @@ header > h1 {
     background-position: center;
     background-size: 18px;
     border: none;
+    cursor: pointer;
     margin-left: auto;
     height: 18px;
     width: 18px;
@@ -264,6 +260,7 @@ header > h1 {
     background-color: var(--snow-white);
     border: none;
     border-radius: 8px;
+    cursor: pointer;
     font-size: 1.1rem;
     display: flex;
     align-items: center;
@@ -367,4 +364,12 @@ form > button {
 
 form > button:hover {
     background-color: rgb(135, 230, 135);
+}
+
+form #title:focus,
+form #description:focus,
+form #due_date:focus,
+form #priority:focus,
+form button:focus {
+    outline: 1px solid gray;
 }
