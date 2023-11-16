@@ -184,6 +184,7 @@ function updateActiveProjectIndex(deletedIndex) {
         projects.addProject(document.querySelector('.add-project input#title').value);
         Storage.populateStorage();
         addProjectDialog.close();
+        addProjectForm.reset();
         renderScreen();
     });
 })();
@@ -201,6 +202,7 @@ function updateActiveProjectIndex(deletedIndex) {
         );
         Storage.populateStorage();
         addTaskDialog.close();
+        addTaskForm.reset();
         renderScreen();
     });  
 })();
@@ -217,6 +219,7 @@ function updateActiveProjectIndex(deletedIndex) {
         projects.setActiveTaskIndex(null);
         Storage.populateStorage();
         editTaskDialog.close();
+        editTaskForm.reset();
         if (Object.values(defaultProjects).includes(true)) {
             appendDefaultProjectDOM();
         } else {
