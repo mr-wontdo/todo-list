@@ -292,7 +292,7 @@ function appendDefaultProjectDOM() {
     const projectTitle = document.createElement('h2');
     if (defaultProjects.isAllActive === true) projectTitle.textContent = 'All Tasks';
     if (defaultProjects.isTodayActive === true) projectTitle.textContent = 'Today\'s Tasks';
-    if (defaultProjects.isWeekActive === true) projectTitle.textContent = 'This Week\'s Task';
+    if (defaultProjects.isWeekActive === true) projectTitle.textContent = 'This Week\'s Tasks';
     content.appendChild(projectTitle);
 
     for (let i = 0; i < projects.projectList.length; i++) {
