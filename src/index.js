@@ -1,3 +1,3 @@
-import { loadHomepage } from './UI.js';
+import { loadHomepage } from './user-interface.js';
 
 loadHomepage();
