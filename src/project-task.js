@@ -94,26 +94,3 @@ class Task {
         this.complete = complete;
     }
 }
-
-projects.addProject('Project One');
-projects.addProject('Project Two');
-projects.addProject('Project Three');
-projects.addProject('Project Four');
-
-projects.setActiveProjectIndex(0);
-projects.addTask('Item One', 'Description of Item One', '2023-01-01', 'high', true);
-projects.addTask('Item Two', 'Description of Item Two', '2023-01-01', 'high', true);
-
-projects.setActiveProjectIndex(1);
-projects.addTask('Item Three', 'Description of Item Three', '2023-01-01', 'high', true);
-projects.addTask('Item Four', 'Description of Item Four', '2023-01-01', 'high', true);
-
-projects.setActiveProjectIndex(2);
-projects.addTask('Item Five', 'Description of Item Five', '2023-01-01', 'high', true);
-projects.addTask('Item Six', 'Description of Item Six', '2023-01-01', 'high', true);
-
-projects.setActiveProjectIndex(3);
-projects.addTask('Item Seven', 'Description of Item Seven', '2023-01-01', 'high', true);
-projects.addTask('Item Eight', 'Description of Item Eight', '2023-01-01', 'high', true);
-
-projects.setActiveProjectIndex(null);
