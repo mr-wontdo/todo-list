@@ -120,6 +120,10 @@ header > h1 {
     background-color: inherit;
 }
 
+.project-list > div > button:first-child {
+    flex-grow: 1;
+}
+
 .project-list > div > button:first-child::before {
     content: url('./images/list.svg');
     display: inline-block;
@@ -128,6 +132,15 @@ header > h1 {
     margin-right: 6px;
     position: relative;
     top: 3px;
+}
+
+.project-list > div > button:last-child {
+    background-image: url(./images/close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    margin-right: 12px;
+    padding: 0 8px;
 }
 
 .project-list > button {

@@ -34,13 +34,22 @@ function appendProjectDOM() {
 
         // Create delete button
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = '🗑️';
+        deleteButton.style.visibility = 'hidden';
         deleteButton.addEventListener('click', () => {
             projects.deleteProject(i);
             updateActiveProjectIndex(i);
             Storage.populateStorage();
             renderScreen();
         });
+
+        // Unhide delete button when hovered
+        project.addEventListener('mouseenter', () => {
+            deleteButton.removeAttribute('style');
+        })
+
+        project.addEventListener('mouseleave', () => {
+            deleteButton.style.visibility = 'hidden';
+        })
 
         // Append DOM
         navBar.appendChild(project);
