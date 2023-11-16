@@ -236,11 +236,13 @@ header > h1 {
 }
 
 #complete:checked:after {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    font-weight: bold;
     color: var(--obsidian-blue);
     content: '✔';
     position: relative;
     top: -13px;
+    left: 1px;
 }
 
 .content > div > div:last-child {
