@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: inherit;
     margin: 0;
     padding: 0;
     /* border: 1px solid black; */
@@ -22,13 +23,14 @@ body {
     height: 100vh;
 }
 
-button {
-    font-family: inherit;
+*:focus {
+    outline: 1px solid black;
 }
 
 /* Header */
 header {
     background-color: var(--obsidian-blue);
+    box-shadow: 2px 2px 4px gray;
     color: white;
     grid-area: 1 / 1 / 2 / 3;
     display: flex;
@@ -151,6 +153,7 @@ header > h1 {
 .content > h2 {
     background-color: var(--starry-yellow);
     border-radius: 8px;
+    box-shadow: 2px 2px 4px gray;
     font-size: 2rem;
     padding: 12px 24px;
 }
@@ -186,6 +189,7 @@ header > h1 {
     color: white;
     background-color: var(--obsidian-blue);
     border-radius: 8px;
+    box-shadow: 1px 1px 3px gray;
     grid-area: 1 / 3 / 2 / 4; 
     display: flex;
     justify-content: center;
@@ -195,6 +199,7 @@ header > h1 {
 
 .priority {
     border-radius: 8px;
+    box-shadow: 1px 1px 3px gray;
     grid-area: 1 / 4 / 2 / 5;
     display: flex;
     justify-content: center;
@@ -292,6 +297,10 @@ footer {
 
 /* Dialog */
 dialog {
+    background-color: var(--starry-yellow);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px gray;
     left: 0;
     right: 0;
     top: 0;
@@ -303,12 +312,59 @@ dialog {
 form {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 24px;
+    gap: 12px;
+    padding: 32px;
 }
 
-form > div {
+form > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+form > div:not(:first-child) {
     display: flex;
     flex-direction: column;  
-    gap: 12px;
+    gap: 2px;
+}
+
+form > div > p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+form svg {
+    cursor: pointer;
+}
+
+form label {
+    font-size: 1.1rem;
+}
+
+form #title,
+form #description,
+form #due_date,
+form #priority {
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    padding: 8px;  
+}
+
+form #description {
+    height: 100px;
+}
+
+form > button {
+    background-color: rgb(150, 255, 150);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    margin-top: 24px;
+    padding: 12px;
+}
+
+form > button:hover {
+    background-color: rgb(135, 230, 135);
 }
