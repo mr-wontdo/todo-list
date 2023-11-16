@@ -10,7 +10,6 @@ function loadHomepage() {
 
 // Render screen
 function renderScreen() {
-    console.log(projects);
     appendProjectDOM();
     appendTaskDOM();
 }
