@@ -55,7 +55,8 @@ header > h1 {
     margin-bottom: 24px;
 }
 
-.navbar button {
+.navbar > div > button {
+    background-color: var(--icy-blue);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -65,18 +66,14 @@ header > h1 {
     padding: 4px 12px;
 }
 
+.navbar button:hover {
+    background-color: #b6c3c9;  
+}
+
 .default-project-list {
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
-
-.default-project-list > button {
-    background-color: var(--icy-blue);
-}
-
-.default-project-list > button:hover {
-    background-color: #b6c3c9;  
 }
 
 .default-project-list > button::before {
@@ -106,25 +103,19 @@ header > h1 {
     gap: 4px;
 }
 
-.project-list > div {
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.project-list > div:hover {
-    background-color: #b6c3c9;
-}
-
-.project-list > div > button {
+.project-list > button > button {
     background-color: inherit;
+    background-image: url(./images/close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    border: none;
+    margin-left: auto;
+    height: 18px;
+    width: 18px;
 }
 
-.project-list > div > button:first-child {
-    flex-grow: 1;
-}
-
-.project-list > div > button:first-child::before {
+.project-list > button:not(:last-child):before {
     content: url('./images/list.svg');
     display: inline-block;
     height: auto;
@@ -134,32 +125,18 @@ header > h1 {
     top: 3px;
 }
 
-.project-list > div > button:last-child {
-    background-image: url(./images/close.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 18px;
-    margin-right: 12px;
-    padding: 0 8px;
-}
-
-.project-list > button {
-    background-color: var(--icy-blue);
+.project-list > button:last-child {
     margin-top: 12px;
 }
 
-.project-list > button:hover {
-    background-color: #b6c3c9;
-}
-
-.project-list > button::before {
+.project-list > button:last-child:before {
     content: url('./images/plus.svg');
     display: inline-block;
     height: auto;
     width: 24px;
-    margin-right: 4px;
+    margin-right: 6px;
     position: relative;
-    top: 4px;
+    top: 3px;
 }
 
 /* Content */
@@ -236,7 +213,6 @@ header > h1 {
 .priority.high {
     background-color: #fce1e4;
 }
-
 
 #complete {
     -webkit-appearance: none;

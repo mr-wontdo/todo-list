@@ -21,12 +21,10 @@ function appendProjectDOM() {
     navBar.textContent = '';
 
     for (let i = 0; i < projects.projectList.length; i++) {
-        const project = document.createElement('div');
-
         // Create project button
-        const projectTitle = document.createElement('button');
-        projectTitle.textContent = projects.projectList[i].title;
-        projectTitle.addEventListener('click', () => {
+        const project = document.createElement('button');
+        project.textContent = projects.projectList[i].title;
+        project.addEventListener('click', () => {
             setDefaultProjectsInactive();
             projects.setActiveProjectIndex(i);
             renderScreen();
@@ -53,7 +51,6 @@ function appendProjectDOM() {
 
         // Append DOM
         navBar.appendChild(project);
-        project.appendChild(projectTitle);
         project.appendChild(deleteButton);
     }
 
